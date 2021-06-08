@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# test data 
+Tenant.create!(id:1, name: "Admin", subdomain: "admin")
+
+Admin.create!(id:1, email: "ajit+admin@poplify.com", first_name: "Ajit", last_name: "Jain",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
+Admin.create!(id:2, email: "hunny+admin@poplify.com", first_name: "Hunny", last_name: "Varlani",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
+Admin.create!(id:3, email: "manik+admin@poplify.com", first_name: "Manik", last_name: "Kang",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
+
