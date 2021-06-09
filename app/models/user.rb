@@ -4,5 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  acts_as_tenant(:company)       
+  acts_as_tenant(:company)   
+  
+  def subdomain
+    tenant&.subdomain
+  end
 end

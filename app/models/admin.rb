@@ -4,5 +4,10 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  acts_as_tenant(:tenant)       
+  acts_as_tenant(:tenant)  
+  
+  
+  def subdomain 
+    tenant&.subdomain
+  end
 end
