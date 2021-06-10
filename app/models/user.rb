@@ -11,7 +11,7 @@ class User < ApplicationRecord
                         as: :business,
                         dependent:   :destroy
 
-  acts_as_tenant(:company)   
+  acts_as_tenant(:tenant)   
   
   def subdomain
     tenant&.subdomain

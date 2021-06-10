@@ -26,6 +26,7 @@ class HomeController < ApplicationController
 		end
 
 		def respond_with(resource, _opts = {})
+			response["Tenant-Name"] = resource.subdomain 
 			 render json: { message: 'You are logged in.' }, status: :ok
 		end
 end
