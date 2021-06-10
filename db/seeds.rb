@@ -7,16 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # test data 
-Tenant.create!(id:1, name: "Admin", subdomain: "admin")
+tenant = Tenant.create!(name: "Admin", subdomain: "admin")
 
-Admin.create!(id:1, email: "ajit+admin@poplify.com", first_name: "Ajit", last_name: "Jain",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
-Admin.create!(id:2, email: "hunny+admin@poplify.com", first_name: "Hunny", last_name: "Varlani",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
-Admin.create!(id:3, email: "manik+admin@poplify.com", first_name: "Manik", last_name: "Kang",  password:"12345678A", password_confirmation: "12345678A", tenant_id: 1)
+Admin.create!(email: "ajit+admin@poplify.com", first_name: "Ajit", last_name: "Jain",  password:"12345678A", password_confirmation: "12345678A", tenant_id: tenant.id)
+Admin.create!(email: "hunny+admin@poplify.com", first_name: "Hunny", last_name: "Varlani",  password:"12345678A", password_confirmation: "12345678A", tenant_id: tenant.id)
+Admin.create!(email: "manik+admin@poplify.com", first_name: "Manik", last_name: "Kang",  password:"12345678A", password_confirmation: "12345678A", tenant_id: tenant.id)
 
-Tenant.create(id:2, name: "Poplify", subdomain: "poplify")
-Company.create(id:1, name: "Poplify", website: "https://poplify.com", contact_no: "393983", address: "Bus Stand Chandigadh", tenant_id: 2)
-User.create!(id:1, name:"Ajit Jain", email:"ajit@poplify.com", company_id:1, tenant_id: 2, password:"12345678A", password_confirmation:"12345678A")
-
-
-
-User.create!(id:2, name:"Ajit Jain", email:"ajit+1@poplify.com", company_id:1, tenant_id: 2, password:"12345678A", password_confirmation:"12345678A")
+tenant1 = Tenant.create(name: "Poplify", subdomain: "poplify")
+company = Company.create(name: "Poplify", website: "https://poplify.com", contact_no: "393983", address: "Bus Stand Chandigadh", tenant_id: tenant1.id)
+User.create!(name:"Ajit Jain", email:"ajit+1@poplify.com", company_id:company.id, tenant_id: tenant1.id, password:"12345678A", password_confirmation:"12345678A")

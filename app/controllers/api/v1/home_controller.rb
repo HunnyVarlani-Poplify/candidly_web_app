@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class Api::V1::HomeController < ApplicationController
 
   	# protect_from_forgery with: :null_session
   	
