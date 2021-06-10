@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       devise_for :users, defaults: { format: :json }, controllers: {sessions: 'api/v1/users/sessions', registrations: 'api/v1/users/registrations'}
       devise_for :admins, defaults: { format: :json }, controllers: { sessions: 'api/v1/admins/sessions' }
 
+      resources :companies
       post '/sign_in'	=>  'home#sign_in_user', as: :sign_in_user
     end
   end
