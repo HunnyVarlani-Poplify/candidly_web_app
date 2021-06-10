@@ -1,8 +1,8 @@
-class Api::V1::CompaniesController < ApplicationController
-  # before_action :authenticate_admin!
+class CompaniesController < ApplicationController
+  before_action :authenticate_admin!
   
   def create
-    @company = Company.new(company_params)
+    @company = Company.new(company_params)  
     if @company.save
       render json: {company: @company}, status: 200
     else

@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
   acts_as_tenant(:tenant)
   validates :name, presence: true
+  validates_uniqueness_of :name 
   before_validation :tenant_build
 
   private
