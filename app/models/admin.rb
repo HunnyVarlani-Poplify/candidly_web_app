@@ -8,16 +8,12 @@ class Admin < ApplicationRecord
                         dependent:   :destroy
 
 
-  devise :database_authenticatable, :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable,
-         jwt_revocation_strategy: self
-
-  def on_jwt_dispatch(token, payload) 
-    super 
-  end       
-
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :validatable,
+  :jwt_authenticatable, jwt_revocation_strategy: self
 
   acts_as_tenant(:tenant)  
+
   
   
   def subdomain 

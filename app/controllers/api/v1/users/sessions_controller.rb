@@ -1,7 +1,5 @@
 class Api::V1::Users::SessionsController < Devise::SessionsController
   respond_to :json
-  skip_before_action :verify_authenticity_token
-  protect_from_forgery with: :null_session
 
   private
 
