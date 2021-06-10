@@ -1,6 +1,5 @@
 class Api::V1::Admins::SessionsController < Devise::SessionsController
   respond_to :json
-  protect_from_forgery with: :null_session
 
   private
 
@@ -9,7 +8,7 @@ class Api::V1::Admins::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user
+    log_out_success && return if current_api_v1_admin
 
     log_out_failure
   end

@@ -1,8 +1,6 @@
 class Api::V1::Users::SessionsController < Devise::SessionsController
   respond_to :json
-  skip_before_action :verify_authenticity_token
-  protect_from_forgery with: :exception, unless: -> { request.format.json? }
-
+  
   private
 
   def respond_with(resource, _opts = {})
@@ -10,7 +8,7 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user
+    log_out_success && return if current_api_v1_user
 
     log_out_failure
   end

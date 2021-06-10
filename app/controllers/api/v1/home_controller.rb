@@ -21,6 +21,10 @@ class Api::V1::HomeController < ApplicationController
 		end
 
 		def respond_with(resource, _opts = {})
-			 render json: { message: 'You are logged in.' }, status: :ok
+			if resource.class == Admin 
+			 	render json: AdminSerializer.new(resource), status: :ok
+			else 
+				render json: UserSerializer.new(resource), status: :ok
+			end
 		end
 end
