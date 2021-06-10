@@ -17,3 +17,6 @@ Tenant.create(id:2, name: "Poplify", subdomain: "poplify")
 Company.create(id:1, name: "Poplify", website: "https://poplify.com", contact_no: "393983", address: "Bus Stand Chandigadh", tenant_id: 2)
 User.create!(id:1, name:"Ajit Jain", email:"ajit@poplify.com", company_id:1, tenant_id: 2, password:"12345678A", password_confirmation:"12345678A")
 
+
+
+User.create!(id:2, name:"Ajit Jain", email:"ajit+1@poplify.com", company_id:1, tenant_id: 2, password:"12345678A", password_confirmation:"12345678A")

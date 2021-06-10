@@ -16,6 +16,19 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'd938f3391dafac328aa182738f8811992b968513bb56edfbb720a584dae92814ff85001dc27823b2ae2c99fb71096f2cb8839835b8b826f85c5f8b81dbea99d1'
 
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+    jwt.expiration_time = 2.weeks.to_i
+    jwt.dispatch_requests = [['POST', %r{^/api/v1/sign_in$}]]
+    # jwt.request_formats = {
+    #                     user: [nil, :json],
+    #                     admin: [nil, :json]
+    #                   }
+    # jwt.dispatch_requests = [['POST', %r{^api/v1/users/sign_in([.]json)?$}]]
+    # jwt.revocation_requests = [['DELETE', %r{^api/v1/users/sign_out([.]json)?$}]]
+    
+  end
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -97,7 +110,8 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+  # config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [:http_auth, :params_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
