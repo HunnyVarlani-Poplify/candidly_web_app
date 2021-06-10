@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::API
-	# skip_before_action :verify_authenticity_token
+	set_current_tenant_by_subdomain(:tenant, :subdomain)
 end
