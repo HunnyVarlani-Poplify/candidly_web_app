@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
       resources :companies
       post '/sign_in'	=>  'home#sign_in_user', as: :sign_in_user
+      get '/list_of_domains' => 'home#list_of_domains', as: :list_of_domains
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

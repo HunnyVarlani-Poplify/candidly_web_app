@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
-
-  	# protect_from_forgery with: :null_session
-  	
+	before_action :authenticate_user!, only: [:list_of_domains]
+	
 	def sign_in_user
 		auth_options = sign_in_params
 		resource = Admin.find_by(email: auth_options[:email].downcase)
@@ -12,6 +11,12 @@ class HomeController < ApplicationController
 			respond_with resource
 		else
 			render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unauthorized
+		end
+	end
+
+	def list_of_domains 
+		if current_user.present? 
+			render json: { domains: Tenant.all.select(:id, :name, :subdomain) }, status: :ok		
 		end
 	end
 
