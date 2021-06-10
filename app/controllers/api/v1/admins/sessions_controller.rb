@@ -7,8 +7,9 @@ class Api::V1::Admins::SessionsController < Devise::SessionsController
     render json: { message: 'You are logged in.' }, status: :ok
   end
 
-  def respond_to_on_destroy 
-    log_out_success && return if current_admin
+
+  def respond_to_on_destroy
+    log_out_success && return if current_api_v1_admin
 
     log_out_failure
   end
