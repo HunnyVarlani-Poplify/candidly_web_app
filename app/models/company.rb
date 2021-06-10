@@ -1,21 +1,16 @@
 class Company < ApplicationRecord
   acts_as_tenant(:tenant)
   validates :name, presence: true
-  before_validation :tenant_build, :associate_tenant_with_admin
-  belongs_to :admin
-  accepts_nested_attributes_for :admin
+  before_validation :tenant_build
+  belongs_to :user
+  accepts_nested_attributes_for :user
   
   private
 
   def tenant_build
-    tenant_name = name.gsub(/\s+/, '-').downcase
-    build_tenant(name: name, subdomain: tenant_name)
-  end
-
-  def associate_tenant_with_admin
-    return if admin.tenant.present?
-    
-    admin.password = '12345678A'
-    admin.tenant = tenant
+    t_name = name.gsub(/\s+/, '-').downcase
+    t = Tenant.find_by(subdomain: t_name)
+    self.tenant = t
+    build_tenant(name: name, subdomain: t_name) unless tenant.present?
   end
 end

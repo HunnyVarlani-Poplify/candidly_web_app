@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2021_06_10_095553) do
     t.bigint "tenant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "admin_id"
-    t.index ["admin_id"], name: "index_companies_on_admin_id"
+    t.bigint "user_id"
     t.index ["tenant_id"], name: "index_companies_on_tenant_id"
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -80,5 +80,5 @@ ActiveRecord::Schema.define(version: 2021_06_10_095553) do
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
 
-  add_foreign_key "companies", "admins"
+  add_foreign_key "companies", "users"
 end

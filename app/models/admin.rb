@@ -11,8 +11,6 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :validatable,
          :jwt_authenticatable,
          jwt_revocation_strategy: self
-  
-  has_one :company, dependent: :destroy
 
   def on_jwt_dispatch(token, payload) 
     super 
