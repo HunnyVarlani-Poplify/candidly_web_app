@@ -1,5 +1,5 @@
 class Api::V1::HomeController < ApplicationController
-	before_action :authenticate_user!, only: [:list_of_domains]
+	before_action :authenticate_api_v1_user!, only: [:list_of_domains]
 
 	def sign_in_user
 		auth_options = sign_in_params
@@ -15,7 +15,7 @@ class Api::V1::HomeController < ApplicationController
 	end
 
 	def list_of_domains 
-		if current_user.present? 
+		if current_api_v1_user.present? 
 			render json: { domains: Tenant.all.select(:id, :name, :subdomain) }, status: :ok		
 		end
 	end
