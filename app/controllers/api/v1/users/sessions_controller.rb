@@ -8,9 +8,13 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_api_v1_user
-
-    log_out_failure
+    if current_api_v1_user
+      cookies.delete("Authorization", domin: ".cand.localhost")
+      cookies.delete("Tenant-Name", domain: ".cand.localhost")
+      log_out_success && return
+    else
+      log_out_failure
+    end
   end
 
   def log_out_success
