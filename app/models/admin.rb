@@ -2,6 +2,7 @@ class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::JWT::RevocationStrategies::Allowlist
+  include ValidateEmailUniquenessAcrossModels
 
   has_many :allowlisted_jwts, foreign_key: :business_id,
                         as: :business,

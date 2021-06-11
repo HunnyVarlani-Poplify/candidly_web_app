@@ -1,6 +1,12 @@
 module Api
   module V1
     class CompaniesController < ApplicationController
+
+      def index 
+        @companies = Company.all 
+        render json: {company: CompanySerializer.new(@companies).serializable_hash }, status: 200
+      end
+
       def create
         @company = Company.new(company_params) 
         # just for testing

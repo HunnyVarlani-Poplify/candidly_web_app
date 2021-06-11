@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include Devise::JWT::RevocationStrategies::Allowlist
+  include ValidateEmailUniquenessAcrossModels
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -12,6 +13,8 @@ class User < ApplicationRecord
                         dependent:   :destroy
 
   attr_accessor :skip_password_validation
+
+  validates :name, :email, presence: true
 
   acts_as_tenant(:tenant)
   belongs_to :company
