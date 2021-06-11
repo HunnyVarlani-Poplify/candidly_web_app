@@ -19,7 +19,9 @@ Devise.setup do |config|
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
     jwt.expiration_time = 2.weeks.to_i
-    jwt.dispatch_requests = [['POST', %r{^/api/v1/sign_in$}]]
+    jwt.dispatch_requests = [['POST', %r{^/api/v1/sign_in$}],
+                             ['PUT', %r{^/api/v1/users/password$}]
+                            ]
     # jwt.request_formats = {
     #                     user: [nil, :json],
     #                     admin: [nil, :json]

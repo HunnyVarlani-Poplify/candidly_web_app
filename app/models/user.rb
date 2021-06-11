@@ -34,4 +34,10 @@ class User < ApplicationRecord
   def get_jwt_token()
     @@jwt_token
   end
+
+  private
+
+  def password_required?
+    false
+  end
 end
