@@ -11,11 +11,11 @@ class User < ApplicationRecord
                         as: :business,
                         dependent:   :destroy
 
+  attr_accessor :skip_password_validation
 
   acts_as_tenant(:tenant)
   belongs_to :company
 
-  
   def subdomain
     tenant&.subdomain
   end
