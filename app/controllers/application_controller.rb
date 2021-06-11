@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
 	include ActionController::Cookies
+	set_current_tenant_by_subdomain(:tenant, :subdomain)
 
 	def authenticate_api_v1_user!(options = {})  
 		if api_v1_user_signed_in? 

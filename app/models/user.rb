@@ -15,8 +15,8 @@ class User < ApplicationRecord
   attr_accessor :skip_password_validation
 
   validates :name, :email, presence: true
-
   validates :password_confirmation, presence: true, unless: :skip_password_validation
+
   acts_as_tenant(:tenant)
   belongs_to :company
 

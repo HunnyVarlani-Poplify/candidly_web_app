@@ -1,10 +1,10 @@
 module Api
   module V1
     class CompaniesController < ApplicationController
-
+      before_action :authenticate_api_v1_admin!
       def index 
         @companies = Company.all 
-        render json: {company: CompanySerializer.new(@companies).serializable_hash }, status: 200
+        render json: { company: CompanySerializer.new(@companies).serializable_hash }, status: 200
       end
 
       def create
