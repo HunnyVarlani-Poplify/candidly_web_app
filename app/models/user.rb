@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
 
+  validates :password_confirmation, presence: true, unless: :skip_password_validation
   acts_as_tenant(:tenant)
   belongs_to :company
 
@@ -38,9 +39,10 @@ class User < ApplicationRecord
     @@jwt_token
   end
 
-  private
+  protected
 
   def password_required?
-    false
+    return false if skip_password_validation
+    super
   end
 end
