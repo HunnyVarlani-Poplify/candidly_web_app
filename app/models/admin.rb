@@ -20,7 +20,18 @@ class Admin < ApplicationRecord
     tenant&.subdomain
   end
 
+  @@jwt_token = nil;
+
   def on_jwt_dispatch(token, payload)  
     super
-  end  
+    set_jwt_token(token)
+  end
+
+  def set_jwt_token(token)
+    @@jwt_token = token
+  end
+
+  def get_jwt_token()
+    @@jwt_token
+  end
 end

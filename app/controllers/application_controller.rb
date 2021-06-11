@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+	include ActionController::Cookies
 
 	def authenticate_api_v1_user!(options = {})  
 		if api_v1_user_signed_in? 
