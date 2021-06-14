@@ -9,8 +9,5 @@ Rails.application.routes.draw do
       get '/list_of_domains' => 'home#list_of_domains', as: :list_of_domains
     end
   end
-  constraints subdomain: 'app.demo' do
-    get 'reset_password', to: 'api/v1/users/passwords#edit' , as: :edit_password
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
