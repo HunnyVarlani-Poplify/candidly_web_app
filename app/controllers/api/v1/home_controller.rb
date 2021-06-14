@@ -27,8 +27,8 @@ class Api::V1::HomeController < ApplicationController
 
 		def respond_with(resource, _opts = {})
 			response["Tenant-Name"] = resource.subdomain   
-			cookies["Authorization"] = {value:	resource.get_jwt_token, httponly: true, same_site: "None", secure: true, domain: ".cand.localhost"}
-      cookies["Tenant-Name"] = {value: resource.subdomain, httponly: true, same_site: "None", secure: true, domain: ".cand.localhost"}
+			cookies["Authorization"] = {value:	resource.get_jwt_token, httponly: true, same_site: "None", secure: true}
+      cookies["Tenant-Name"] = {value: resource.subdomain, httponly: true, same_site: "None", secure: true}
 			if resource.class == Admin 
 			 	render json: AdminSerializer.new(resource), status: :ok
 			else 
