@@ -9,8 +9,9 @@ class Company < ApplicationRecord
   private
 
   def tenant_build
+    return if tenant.present?
+    
     t_name = name.gsub(/\s+/, '-').downcase
-    tnt = Tenant.find_or_create_by(name: name, subdomain: t_name)
-    self.tenant = user.tenant = tnt
+    user.tenant = self.tenant = build_tenant(name: name, subdomain: t_name)
   end
 end

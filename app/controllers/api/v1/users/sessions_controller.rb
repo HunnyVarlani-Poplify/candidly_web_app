@@ -9,7 +9,7 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
 
   def respond_to_on_destroy
     if current_api_v1_user
-      cookies.delete("Authorization", domin: ".cand.localhost")
+      cookies.delete("Authorization", domain: ".cand.localhost")
       cookies.delete("Tenant-Name", domain: ".cand.localhost")
       log_out_success && return
     else
