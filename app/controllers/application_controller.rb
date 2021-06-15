@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 		end 	
 	end
 
-	def authenticate_admin!(options = {})
+	def authenticate_api_v1_admin!(options = {}) 
 		if api_v1_admin_signed_in? 
 			super(options)
 		else
