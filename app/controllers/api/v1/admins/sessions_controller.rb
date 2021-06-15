@@ -8,7 +8,8 @@ class Api::V1::Admins::SessionsController < Devise::SessionsController
   end
 
 
-  def respond_to_on_destroy     
+  def respond_to_on_destroy  
+    request.headers['HTTP_AUTHORIZATION'] = "Bearer "+request.cookies["Authorization"]   
     if current_api_v1_admin
       log_out_success && return
     else
@@ -17,8 +18,8 @@ class Api::V1::Admins::SessionsController < Devise::SessionsController
   end
 
   def log_out_success
-    cookies.delete("Authorization", ".demo.localhost")
-    cookies.delete("Tenant-Name", ".demo.localhost")
+    cookies.delete("Authorization", domain: ".demo.localhost")
+    cookies.delete("Tenant-Name", domain: ".demo.localhost")
     render json: { message: "You are logged out." }, status: :ok
   end
 
