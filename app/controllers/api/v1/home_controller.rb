@@ -32,6 +32,7 @@ class Api::V1::HomeController < ApplicationController
 		builder = Nokogiri::XML::Builder.new do |xml|
 			xml.DxRequest {
 				xml.Action "add_candidate"
+				xml.Options "index"
 				xml.Username DAXTRA_USERNAME
 				xml.Password DAXTRA_PASSWORD
 				xml.Database DAXTRA_DATABASE
@@ -99,7 +100,7 @@ class Api::V1::HomeController < ApplicationController
 			}
 		end
 		request_body = builder.to_xml  
-		response = faraday.post '', request_body
+		response = faraday.post '', request_body 
 		if response.status == 200
 			response_body = response.body 
 			response_json = Hash.from_xml(response_body)
